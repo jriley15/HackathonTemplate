@@ -1,0 +1,23 @@
+CREATE TABLE `authemployee` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FIRSTNAME` varchar(25) NOT NULL,
+  `LASTNAME` varchar(25) NOT NULL,
+  `PHONE` varchar(10) NOT NULL,
+  `EMAIL` varchar(40) NOT NULL,
+  `EMPLOYEEID` varchar(40) NOT NULL,
+  `ADMIN` int(11) NOT NULL,
+  `ACTIVE` int(11) NOT NULL,
+  `TERMINATED` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `authusers` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USERSID` int(11) NOT NULL,
+  `USERNAME` varchar(25) NOT NULL,
+  `PASSWORD` varchar(100) NOT NULL,
+  `USERKEY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  FOREIGN KEY fk_authemployee_id(`USERSID`)
+  REFERENCES authemployee(`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
