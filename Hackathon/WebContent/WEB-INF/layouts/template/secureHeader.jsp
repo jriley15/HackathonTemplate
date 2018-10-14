@@ -34,7 +34,7 @@ For boostrapping the navbar
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<img src="<c:url value="/resources/images/socialnormlogo.png" />" width="120" height="40" align="left" style="margin-top: 3px; padding-left: 5px" class="logo" />
+				<img src="<c:url value="/resources/images/logo.png" />" width="120" height="40" align="left" style="margin-top: 3px; padding-left: 5px" class="logo" />
 			</div>
 			<!-- end responsive hamburger -->
 			

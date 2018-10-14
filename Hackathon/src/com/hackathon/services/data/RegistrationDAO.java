@@ -46,11 +46,11 @@ public class RegistrationDAO implements IRegistrationDAO
 			// define all of our queries
 			// n1euzrfjibaye0bl
 			// check if user is an actual employee
-			String query1 = "SELECT * FROM activity2.authemployee WHERE FIRSTNAME = ? AND LASTNAME = ? AND EMPLOYEEID = ?";
+			String query1 = "SELECT * FROM nod3eke2u33fhtk2.authemployee WHERE FIRSTNAME = ? AND LASTNAME = ? AND EMPLOYEEID = ?";
 			// for checking if a username is already in the database
-			String query2 = "SELECT * FROM activity2.authusers WHERE USERNAME = ?";
+			String query2 = "SELECT * FROM nod3eke2u33fhtk2.authusers WHERE USERNAME = ?";
 			// for inserting the new username and password into the users table
-			String query3 = "INSERT INTO activity2.authusers (USERSID, USERNAME, PASSWORD) VALUES(?, ?, ?)";
+			String query3 = "INSERT INTO nod3eke2u33fhtk2.authusers (USERSID, USERNAME, PASSWORD) VALUES(?, ?, ?)";
 			
 			// prepared statements for each query, using injected dbconnection to connect to db
 			PreparedStatement pt1 = dbconn.dbConnect().prepareStatement(query1);

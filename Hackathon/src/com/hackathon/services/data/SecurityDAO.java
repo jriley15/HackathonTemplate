@@ -46,8 +46,8 @@ public class SecurityDAO implements ISecurityDAO
 		{
 			// n1euzrfjibaye0bl
 			// defining query for checking if there is a row that matches the username and password passed in
-			String query = "SELECT * FROM activity2.authusers WHERE USERNAME = ? AND PASSWORD = ?";
-			String query2 = "SELECT * FROM activity2.authemployee WHERE ID = ?";
+			String query = "SELECT * FROM nod3eke2u33fhtk2.authusers WHERE USERNAME = ? AND PASSWORD = ?";
+			String query2 = "SELECT * FROM nod3eke2u33fhtk2.authemployee WHERE ID = ?";
 			
 			// prepared statement for the query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
@@ -100,7 +100,7 @@ public class SecurityDAO implements ISecurityDAO
 		{
 			// n1euzrfjibaye0bl
 			// defining query for checking if there is a row that matches the username and password passed in
-			String query = "SELECT IS_ADMIN FROM activity2.authemployee WHERE ID = ?";
+			String query = "SELECT IS_ADMIN FROM nod3eke2u33fhtk2.authemployee WHERE ID = ?";
 			
 			// prepared statement for the query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
@@ -141,7 +141,7 @@ public class SecurityDAO implements ISecurityDAO
 		{
 			// n1euzrfjibaye0bl
 			// defining query for checking if there is a row that matches the username and password passed in
-			String query = "SELECT * FROM activity2.authemployee WHERE ID = ?";
+			String query = "SELECT * FROM nod3eke2u33fhtk2.authemployee WHERE ID = ?";
 			
 			// prepared statement for the query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);

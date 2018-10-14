@@ -5,11 +5,14 @@ CREATE TABLE `authemployee` (
   `PHONE` varchar(10) NOT NULL,
   `EMAIL` varchar(40) NOT NULL,
   `EMPLOYEEID` varchar(40) NOT NULL,
-  `ADMIN` int(11) NOT NULL,
-  `ACTIVE` int(11) NOT NULL,
-  `TERMINATED` int(11) NOT NULL,
+  `IS_ADMIN` varchar(1) NOT NULL,
+  `IS_ACTIVE` varchar(1) NOT NULL,
+  `IS_TERMINATED` varchar(1) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
 
 CREATE TABLE `authusers` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -24,10 +27,12 @@ CREATE TABLE `authusers` (
 
 
 
-INSERT INTO `activity2`.`authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `ADMIN`, `ACTIVE`, `TERMINATED`) VALUES ('Jordan', 'Riley', '6023246879', 'jordanriley@gmail.com', '234567', 0, 1, 0);
+INSERT INTO `authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `IS_ADMIN`, `IS_ACTIVE`, `IS_TERMINATED`) VALUES ('Trevor', 'Moore', '6028103667', 'trevor@gmail.com', '123456', '1', '1', '0');
 
-INSERT INTO `activity2`.`authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `ADMIN`, `ACTIVE`, `TERMINATED`) VALUES ('Carter', 'Rice', '6022135287', 'carterrice@gmail.com', '345678', 0, 1, 0);
+INSERT INTO `authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `IS_ADMIN`, `IS_ACTIVE`, `IS_TERMINATED`) VALUES ('Jordan', 'Riley', '6023246879', 'jordan]@gmail.com', '234567', '1', '1', '0');
 
-INSERT INTO `activity2`.`authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `ADMIN`, `ACTIVE`, `TERMINATED`) VALUES ('Stone', 'Sommers', '6239263527', 'stone@gmail.com', '456789', 0, 1, 0);
+INSERT INTO `authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `IS_ADMIN`, `IS_ACTIVE`, `IS_TERMINATED`) VALUES ('Carter', 'Rice', '6022135287', 'carter]@gmail.com', '345678', '0', '1', '0');
 
-INSERT INTO `activity2`.`authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `ADMIN`, `ACTIVE`, `TERMINATED`) VALUES ('Kyle', 'DeHart', '6021902501', 'kyled@gmail.com', '567890', 0, 1, 0);
+INSERT INTO `authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `IS_ADMIN`, `IS_ACTIVE`, `IS_TERMINATED`) VALUES ('Stone', 'Sommers', '6239263527', 'stone@gmail.com', '456789', '0', '1', '0');
+
+INSERT INTO `authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `IS_ADMIN`, `IS_ACTIVE`, `IS_TERMINATED`) VALUES ('Kyle', 'DeHart', '6021902501', 'kyle@gmail.com', '567890', '0', '1', '0');

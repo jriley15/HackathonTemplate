@@ -39,8 +39,9 @@ public class DBConnection implements IDBConnection
 
         	// opening a connection using the database url
     		// "jdbc:mysql://localhost:4306/activity2","root","root"
-    		// "jdbc:mysql://aucxibl2dxeo01wa:hytrxvvxgrfx6e02@l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/n1euzrfjibaye0bl","aucxibl2dxeo01wa","hytrxvvxgrfx6e02"
-        	connection = DriverManager.getConnection("jdbc:mysql://localhost:4306/activity2","root","root");
+    		// "socialnorm: mysql://aucxibl2dxeo01wa:hytrxvvxgrfx6e02@l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/n1euzrfjibaye0bl","aucxibl2dxeo01wa","hytrxvvxgrfx6e02"
+    		// opportunityhack: mysql://y2fkufcdev0yjma3:t9ylcf9w4aapkdfl@tuy8t6uuvh43khkk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/nod3eke2u33fhtk2
+        	connection = DriverManager.getConnection("jdbc:mysql://y2fkufcdev0yjma3:t9ylcf9w4aapkdfl@tuy8t6uuvh43khkk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/nod3eke2u33fhtk2","y2fkufcdev0yjma3","t9ylcf9w4aapkdfl");
 
         	// returning the database connection
         	return connection;

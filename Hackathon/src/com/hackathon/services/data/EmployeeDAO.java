@@ -49,7 +49,7 @@ public class EmployeeDAO implements IEmployeeDAO
 			// defining all our queries
 			// n1euzrfjibaye0bl
 			// second query for inserting the topic into the posts table
-			String query = "INSERT INTO activity2.authemployee (FIRSTNAME, LASTNAME, PHONE, EMAIL, EMPLOYEEID, IS_ADMIN, IS_ACTIVE, IS_TERMINATED) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO nod3eke2u33fhtk2.authemployee (FIRSTNAME, LASTNAME, PHONE, EMAIL, EMPLOYEEID, IS_ADMIN, IS_ACTIVE, IS_TERMINATED) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			// prepared statements for each query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
@@ -99,7 +99,7 @@ public class EmployeeDAO implements IEmployeeDAO
 			// defining all our queries
 			// n1euzrfjibaye0bl
 			// first query for grabbing the ID of the user who is posting the topic from the users table
-			String query = "SELECT * FROM activity2.authemployee WHERE EMPLOYEEID = ?";
+			String query = "SELECT * FROM nod3eke2u33fhtk2.authemployee WHERE EMPLOYEEID = ?";
 			
 			// prepared statements for each query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
@@ -144,7 +144,7 @@ public class EmployeeDAO implements IEmployeeDAO
 			// defining all our queries
 			// n1euzrfjibaye0bl
 			// first query for grabbing the ID of the user who is posting the topic from the users table
-			String query = "SELECT * FROM activity2.authemployee";
+			String query = "SELECT * FROM nod3eke2u33fhtk2.authemployee";
 			
 			// prepared statements for each query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
@@ -196,7 +196,7 @@ public class EmployeeDAO implements IEmployeeDAO
 				// defining all our queries
 				// n1euzrfjibaye0bl
 				// second query for inserting the topic into the posts table
-				String query = "UPDATE activity2.authemployee SET IS_ADMIN = ?, IS_ACTIVE = ?, IS_TERMINATED = ? WHERE EMPLOYEEID = ?";
+				String query = "UPDATE nod3eke2u33fhtk2.authemployee SET IS_ADMIN = ?, IS_ACTIVE = ?, IS_TERMINATED = ? WHERE EMPLOYEEID = ?";
 				
 				// prepared statements for each query, using injected dbconnection to connect to db
 				PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
@@ -246,7 +246,7 @@ public class EmployeeDAO implements IEmployeeDAO
 			// n1euzrfjibaye0bl
 			// second query for inserting the topic into the posts table
 			//String query1 = "DELETE FROM activity2.authusers WHERE USERSID = ?";
-			String query2 = "DELETE FROM activity2.authemployee WHERE EMPLOYEEID = ?";
+			String query2 = "DELETE FROM nod3eke2u33fhtk2.authemployee WHERE EMPLOYEEID = ?";
 			
 			// prepared statements for each query, using injected dbconnection to connect to db
 			//PreparedStatement pt1 = dbconn.dbConnect().prepareStatement(query1);

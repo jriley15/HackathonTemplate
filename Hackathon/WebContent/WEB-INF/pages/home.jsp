@@ -40,8 +40,8 @@ For making the carousel
     <div class="item active">
       <img src="${pageContext.request.contextPath}/resources/images/image1.jpg">
       <div class="carousel-caption">
-      	<h1>Welcome to SocialNorm!</h1>
-          <p>The root for all your social networking needs.</p>
+      	<h1>Welcome to our Hackathon App!</h1>
+          <p>The root for all your business needs.</p>
           <p><a class="btn btn-lg btn-primary" href="#">Learn More</a></p>
       </div>
     </div>
@@ -49,7 +49,7 @@ For making the carousel
       <img src="${pageContext.request.contextPath}/resources/images/image2.jpg">
       <div class="carousel-caption">
       	<h1>Explore!</h1>
-          <p>Feel free to browse our site and enjoy all our content.</p>
+          <p>Feel free to browse our app and enjoy all our content.</p>
           <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
       </div>
     </div>
@@ -57,7 +57,7 @@ For making the carousel
       <img src="${pageContext.request.contextPath}/resources/images/image3.jpg">
       <div class="carousel-caption">
       	<h1>Sign Up and Get Started!</h1>
-          <p>Register and login to connect, view, and share your accomplishments with anyone across the world.</p>
+          <p>Register and login to get started!</p>
           <p><a class="btn btn-large btn-primary" href="#">Learn More</a></p>
       </div>
     </div>
