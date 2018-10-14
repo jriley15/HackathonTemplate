@@ -1,7 +1,7 @@
 package com.hackathon.services.data;
 
-import com.socialnorm.model.CredentialModel;
-import com.socialnorm.model.EmployeeModel;
+import com.hackathon.model.CredentialModel;
+import com.hackathon.model.EmployeeModel;
 
 /**
  * Trevor Moore

@@ -1,9 +1,9 @@
 package com.hackathon.services.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.socialnorm.model.CredentialModel;
-import com.socialnorm.model.EmployeeModel;
-import com.socialnorm.services.data.ISecurityDAO;
+import com.hackathon.model.CredentialModel;
+import com.hackathon.model.EmployeeModel;
+import com.hackathon.services.data.ISecurityDAO;
 
 /**
  * Trevor Moore

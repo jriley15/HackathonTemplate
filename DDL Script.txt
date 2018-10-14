@@ -19,5 +19,15 @@ CREATE TABLE `authusers` (
   `USERKEY` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   FOREIGN KEY fk_authemployee_id(`USERSID`)
-  REFERENCES authemployee(`ID`)
+  REFERENCES authemployee(`ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+INSERT INTO `activity2`.`authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `ADMIN`, `ACTIVE`, `TERMINATED`) VALUES ('Jordan', 'Riley', '6023246879', 'jordanriley@gmail.com', '234567', 0, 1, 0);
+
+INSERT INTO `activity2`.`authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `ADMIN`, `ACTIVE`, `TERMINATED`) VALUES ('Carter', 'Rice', '6022135287', 'carterrice@gmail.com', '345678', 0, 1, 0);
+
+INSERT INTO `activity2`.`authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `ADMIN`, `ACTIVE`, `TERMINATED`) VALUES ('Stone', 'Sommers', '6239263527', 'stone@gmail.com', '456789', 0, 1, 0);
+
+INSERT INTO `activity2`.`authemployee` (`FIRSTNAME`, `LASTNAME`, `PHONE`, `EMAIL`, `EMPLOYEEID`, `ADMIN`, `ACTIVE`, `TERMINATED`) VALUES ('Kyle', 'DeHart', '6021902501', 'kyled@gmail.com', '567890', 0, 1, 0);

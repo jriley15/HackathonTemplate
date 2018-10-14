@@ -1,13 +1,13 @@
 package com.hackathon.controller;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.socialnorm.model.CredentialModel;
-import com.socialnorm.model.SearchModel;
+import com.hackathon.model.CredentialModel;
+import com.hackathon.model.RegisterModel;
+import com.hackathon.model.SearchModel;
 
 /**
  * Trevor Moore
@@ -58,16 +58,32 @@ public class HomeController
 	 * @return ModelAndView object type ModelAndView
 	 */
 	@RequestMapping(path="/Home", method=RequestMethod.GET)
-	public ModelAndView getSecureSocialNorm() 
+	public ModelAndView getSecureSocialNorm(HttpSession session) 
 	{
-		// instantiating ModelAndView object and specifying to return the "secureHome" view
-		ModelAndView mav = new ModelAndView("secureHome");
-		
-		// adding a Search model object to the ModelAndView
-		mav.addObject("search", new SearchModel());
-
-		// returning ModelAndView object with all models needed attached
-		return mav;
+		if(session != null && session.getAttribute("user") != null)
+		{
+			// instantiating ModelAndView object and specifying to return the "secureHome" view
+			ModelAndView mav = new ModelAndView("secureHome");
+			
+			// adding a Search model object to the ModelAndView
+			mav.addObject("search", new SearchModel());
+	
+			// returning ModelAndView object with all models needed attached
+			return mav;
+		}
+		else
+		{
+			// instantiating ModelAndView object and specifying to return the "registerUser" view
+			ModelAndView mav = new ModelAndView("registerUser");
+			
+			// adding a Login, Register, and Search model objects to the ModelAndView to resolve the form modelAttributes in the header (search form and login form both need models)
+			mav.addObject("login", new CredentialModel());
+			mav.addObject("register", new RegisterModel());
+			mav.addObject("search", new SearchModel());
+			
+			// returning ModelAndView object with all models needed attached
+			return mav;
+		}
 	}
 	
 }

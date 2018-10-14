@@ -2,10 +2,8 @@ package com.hackathon.services.data;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.socialnorm.model.RegisterModel;
+import com.hackathon.model.RegisterModel;
 
 /**
  * Trevor Moore

@@ -2,8 +2,8 @@ package com.hackathon.services.business;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.socialnorm.model.EmployeeModel;
-import com.socialnorm.services.data.IEmployeeDAO;
+import com.hackathon.model.EmployeeModel;
+import com.hackathon.services.data.IEmployeeDAO;
 
 /**
  * Trevor Moore

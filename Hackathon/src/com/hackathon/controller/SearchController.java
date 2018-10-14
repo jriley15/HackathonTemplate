@@ -1,5 +1,6 @@
 package com.hackathon.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -7,8 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.socialnorm.model.CredentialModel;
-import com.socialnorm.model.SearchModel;
+import com.hackathon.model.CredentialModel;
+import com.hackathon.model.RegisterModel;
+import com.hackathon.model.SearchModel;
 
 /**
  * Trevor Moore
@@ -71,14 +73,27 @@ public class SearchController
 	 * @return ModelAndView to display errors on secure error page or return the secure home page if no errors occur.
 	 */
 	@RequestMapping(path="/securesearch", method=RequestMethod.POST)
-	public ModelAndView secureSearch(@Valid @ModelAttribute("search") SearchModel search, BindingResult result)
+	public ModelAndView secureSearch(@Valid @ModelAttribute("search") SearchModel search, BindingResult result, HttpSession session)
 	{
-		// check if the model has data validation errors
-		if(result.hasErrors())
+		if(session != null && session.getAttribute("user") != null)
 		{
-			// if it has errors:
-			// instantiating ModelAndView object and specifying to return the "secureSearchError" view
-			ModelAndView mav = new ModelAndView("secureSearchError");
+			// check if the model has data validation errors
+			if(result.hasErrors())
+			{
+				// if it has errors:
+				// instantiating ModelAndView object and specifying to return the "secureSearchError" view
+				ModelAndView mav = new ModelAndView("secureSearchError");
+				
+				// adding a Search model (using model passed in)
+				mav.addObject("search", search);
+				
+				// returning ModelAndView object with all models needed attached
+				return mav;
+			}
+			
+			// if it does not have errors:
+			// instantiating ModelAndView object and specifying to return the "secureHome" view
+			ModelAndView mav = new ModelAndView("secureHome");
 			
 			// adding a Search model (using model passed in)
 			mav.addObject("search", search);
@@ -86,16 +101,19 @@ public class SearchController
 			// returning ModelAndView object with all models needed attached
 			return mav;
 		}
-		
-		// if it does not have errors:
-		// instantiating ModelAndView object and specifying to return the "secureHome" view
-		ModelAndView mav = new ModelAndView("secureHome");
-		
-		// adding a Search model (using model passed in)
-		mav.addObject("search", search);
-		
-		// returning ModelAndView object with all models needed attached
-		return mav;
+		else
+		{
+			// instantiating ModelAndView object and specifying to return the "registerUser" view
+			ModelAndView mav = new ModelAndView("registerUser");
+			
+			// adding a Login, Register, and Search model objects to the ModelAndView to resolve the form modelAttributes in the header (search form and login form both need models)
+			mav.addObject("login", new CredentialModel());
+			mav.addObject("register", new RegisterModel());
+			mav.addObject("search", new SearchModel());
+			
+			// returning ModelAndView object with all models needed attached
+			return mav;
+		}
 		
 	}
 }

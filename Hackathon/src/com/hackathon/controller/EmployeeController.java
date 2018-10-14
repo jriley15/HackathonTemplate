@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.socialnorm.model.EmployeeListWrapper;
-import com.socialnorm.model.EmployeeModel;
-import com.socialnorm.model.SearchModel;
-import com.socialnorm.services.business.IEmployeeService;
+
+import com.hackathon.model.CredentialModel;
+import com.hackathon.model.EmployeeListWrapper;
+import com.hackathon.model.EmployeeModel;
+import com.hackathon.model.RegisterModel;
+import com.hackathon.model.SearchModel;
+import com.hackathon.services.business.IEmployeeService;
 
 /**
  * Trevor Moore
@@ -53,22 +56,38 @@ public class EmployeeController
 	@RequestMapping(path="/employees", method=RequestMethod.GET)
     public ModelAndView getEmployeesView(HttpSession session) 
     {
-        // instantiating ModelAndView object and specifying to return the "createTopic" view
-        ModelAndView mav = new ModelAndView("viewEmployees");
-
-        EmployeeListWrapper wrapper = new EmployeeListWrapper();
-
-        wrapper.setEmployees(new ArrayList<EmployeeModel>(employeeService.getEmployees()));
-        
-        String id = (String) session.getAttribute("admin");
-
-        // adding a Search and Topic model objects to the ModelAndView
-        mav.addObject("search", new SearchModel());
-        mav.addObject("wrapper", wrapper);
-        mav.addObject("id", id);
-
-        // returning ModelAndView object with all models needed attached
-        return mav;
+		if(session != null && session.getAttribute("admin") != null)
+		{
+	        // instantiating ModelAndView object and specifying to return the "createTopic" view
+	        ModelAndView mav = new ModelAndView("viewEmployees");
+	
+	        EmployeeListWrapper wrapper = new EmployeeListWrapper();
+	
+	        wrapper.setEmployees(new ArrayList<EmployeeModel>(employeeService.getEmployees()));
+	        
+	        String id = (String) session.getAttribute("admin");
+	
+	        // adding a Search and Topic model objects to the ModelAndView
+	        mav.addObject("search", new SearchModel());
+	        mav.addObject("wrapper", wrapper);
+	        mav.addObject("id", id);
+	
+	        // returning ModelAndView object with all models needed attached
+	        return mav;
+	    }
+		else
+		{
+			// instantiating ModelAndView object and specifying to return the "registerUser" view
+			ModelAndView mav = new ModelAndView("registerUser");
+			
+			// adding a Login, Register, and Search model objects to the ModelAndView to resolve the form modelAttributes in the header (search form and login form both need models)
+			mav.addObject("login", new CredentialModel());
+			mav.addObject("register", new RegisterModel());
+			mav.addObject("search", new SearchModel());
+			
+			// returning ModelAndView object with all models needed attached
+			return mav;
+		}
     }
 	
 	/**
@@ -79,17 +98,33 @@ public class EmployeeController
 	 * @return ModelAndView object type ModelAndView
 	 */
 	@RequestMapping(path="/addemployee", method=RequestMethod.GET)
-	public ModelAndView getAddEmployeeView() 
+	public ModelAndView getAddEmployeeView(HttpSession session) 
 	{
-		// instantiating ModelAndView object and specifying to return the "createTopic" view
-		ModelAndView mav = new ModelAndView("addEmployee");
-		
-		// adding a Search and Topic model objects to the ModelAndView
-		mav.addObject("search", new SearchModel());
-		mav.addObject("employee", new EmployeeModel());
-		
-		// returning ModelAndView object with all models needed attached
-		return mav;
+		if(session != null && session.getAttribute("admin") != null)
+		{
+			// instantiating ModelAndView object and specifying to return the "createTopic" view
+			ModelAndView mav = new ModelAndView("addEmployee");
+			
+			// adding a Search and Topic model objects to the ModelAndView
+			mav.addObject("search", new SearchModel());
+			mav.addObject("employee", new EmployeeModel());
+			
+			// returning ModelAndView object with all models needed attached
+			return mav;
+		}
+		else
+		{
+			// instantiating ModelAndView object and specifying to return the "registerUser" view
+			ModelAndView mav = new ModelAndView("registerUser");
+			
+			// adding a Login, Register, and Search model objects to the ModelAndView to resolve the form modelAttributes in the header (search form and login form both need models)
+			mav.addObject("login", new CredentialModel());
+			mav.addObject("register", new RegisterModel());
+			mav.addObject("search", new SearchModel());
+			
+			// returning ModelAndView object with all models needed attached
+			return mav;
+		}
 	}
 	
 	/**
@@ -105,70 +140,86 @@ public class EmployeeController
 	@RequestMapping(path="/addemployee", method=RequestMethod.POST)
 	public ModelAndView addEmployee(@Valid @ModelAttribute("topic") EmployeeModel employee, BindingResult result, HttpSession session)
 	{
-		// USE THIS TO GET OBJECTS IN THE SESSION:
-		// (CredentialModel) session.getAttribute("user")
-		
-		// check if the model has data validation errors
-		if(result.hasErrors())
+		if(session != null && session.getAttribute("admin") != null)
 		{
-			// if it has errors:
-			// instantiating ModelAndView object and specifying to return the "createTopic" view
-			ModelAndView mav = new ModelAndView("addEmployee");
+			// USE THIS TO GET OBJECTS IN THE SESSION:
+			// (CredentialModel) session.getAttribute("user")
 			
-			// adding a Search and Topic model object to the ModelAndView
-			mav.addObject("search", new SearchModel());
-			mav.addObject("topic", employee);
-			
-			// returning ModelAndView object with all models needed attached
-			return mav;
-		}
-		
-		// Try Catch block for catching db exceptions
-		try
-		{
-			// if what is returned is true (meaning the post was successfully inserted)
-			if(employeeService.addEmployee(employee))
+			// check if the model has data validation errors
+			if(result.hasErrors())
 			{
+				// if it has errors:
 				// instantiating ModelAndView object and specifying to return the "createTopic" view
-		        ModelAndView mav = new ModelAndView("viewEmployees");
-
-		        EmployeeListWrapper wrapper = new EmployeeListWrapper();
-
-		        wrapper.setEmployees(new ArrayList<EmployeeModel>(employeeService.getEmployees()));
-		        
-		        String id = (String) session.getAttribute("admin");
-
-		        // adding a Search and Topic model objects to the ModelAndView
-		        mav.addObject("search", new SearchModel());
-		        mav.addObject("wrapper", wrapper);
-		        mav.addObject("id", id);
-
-		        // returning ModelAndView object with all models needed attached
-		        return mav;
-			}
-			// if false, meaning the post was not inserted
-			else
-			{
-				// instantiating ModelAndView object and specifying to return the "secureError" view for logged in errors
-				ModelAndView mav = new ModelAndView("secureError");
+				ModelAndView mav = new ModelAndView("addEmployee");
 				
-				// adding a Search model objects to the ModelAndView
+				// adding a Search and Topic model object to the ModelAndView
 				mav.addObject("search", new SearchModel());
-
+				mav.addObject("topic", employee);
+				
 				// returning ModelAndView object with all models needed attached
 				return mav;
 			}
 			
+			// Try Catch block for catching db exceptions
+			try
+			{
+				// if what is returned is true (meaning the post was successfully inserted)
+				if(employeeService.addEmployee(employee))
+				{
+					// instantiating ModelAndView object and specifying to return the "createTopic" view
+			        ModelAndView mav = new ModelAndView("viewEmployees");
+	
+			        EmployeeListWrapper wrapper = new EmployeeListWrapper();
+	
+			        wrapper.setEmployees(new ArrayList<EmployeeModel>(employeeService.getEmployees()));
+			        
+			        String id = (String) session.getAttribute("admin");
+	
+			        // adding a Search and Topic model objects to the ModelAndView
+			        mav.addObject("search", new SearchModel());
+			        mav.addObject("wrapper", wrapper);
+			        mav.addObject("id", id);
+	
+			        // returning ModelAndView object with all models needed attached
+			        return mav;
+				}
+				// if false, meaning the post was not inserted
+				else
+				{
+					// instantiating ModelAndView object and specifying to return the "secureError" view for logged in errors
+					ModelAndView mav = new ModelAndView("secureError");
+					
+					// adding a Search model objects to the ModelAndView
+					mav.addObject("search", new SearchModel());
+	
+					// returning ModelAndView object with all models needed attached
+					return mav;
+				}
+				
+			}
+			// catching any exceptions so that the user will always see a nice error page
+			catch(Exception e)
+			{
+				System.out.println("Database Exception. Caught in Create Controller.");
+				
+				// instantiating ModelAndView object and specifying to return the "secureError" view
+				ModelAndView mav = new ModelAndView("secureError");
+				
+				// adding a Search model objects to the ModelAndView
+				mav.addObject("search", new SearchModel());
+				
+				// returning ModelAndView object with all models needed attached
+				return mav;
+			}
 		}
-		// catching any exceptions so that the user will always see a nice error page
-		catch(Exception e)
+		else
 		{
-			System.out.println("Database Exception. Caught in Create Controller.");
+			// instantiating ModelAndView object and specifying to return the "registerUser" view
+			ModelAndView mav = new ModelAndView("registerUser");
 			
-			// instantiating ModelAndView object and specifying to return the "secureError" view
-			ModelAndView mav = new ModelAndView("secureError");
-			
-			// adding a Search model objects to the ModelAndView
+			// adding a Login, Register, and Search model objects to the ModelAndView to resolve the form modelAttributes in the header (search form and login form both need models)
+			mav.addObject("login", new CredentialModel());
+			mav.addObject("register", new RegisterModel());
 			mav.addObject("search", new SearchModel());
 			
 			// returning ModelAndView object with all models needed attached
@@ -189,55 +240,71 @@ public class EmployeeController
 	@RequestMapping(path="/updateemployee", method=RequestMethod.POST)
 	public ModelAndView updateEmployee(EmployeeListWrapper employees, HttpSession session)
 	{
-		// USE THIS TO GET OBJECTS IN THE SESSION:
-		// (CredentialModel) session.getAttribute("user")
-
-		// Try Catch block for catching db exceptions
-		try
+		if(session != null && session.getAttribute("admin") != null)
 		{
-			// if what is returned is true (meaning the post was successfully inserted)
-			if(employeeService.updateEmployees(employees.getEmployees()))
+			// USE THIS TO GET OBJECTS IN THE SESSION:
+			// (CredentialModel) session.getAttribute("user")
+	
+			// Try Catch block for catching db exceptions
+			try
 			{
-				// instantiating ModelAndView object and specifying to return the "createTopic" view
-		        ModelAndView mav = new ModelAndView("viewEmployees");
-
-		        EmployeeListWrapper wrapper = new EmployeeListWrapper();
-
-		        wrapper.setEmployees(new ArrayList<EmployeeModel>(employeeService.getEmployees()));
-		        
-		        String id = (String) session.getAttribute("admin");
-
-		        // adding a Search and Topic model objects to the ModelAndView
-		        mav.addObject("search", new SearchModel());
-		        mav.addObject("wrapper", wrapper);
-		        mav.addObject("id", id);
-
-		        // returning ModelAndView object with all models needed attached
-		        return mav;
+				// if what is returned is true (meaning the post was successfully inserted)
+				if(employeeService.updateEmployees(employees.getEmployees()))
+				{
+					// instantiating ModelAndView object and specifying to return the "createTopic" view
+			        ModelAndView mav = new ModelAndView("viewEmployees");
+	
+			        EmployeeListWrapper wrapper = new EmployeeListWrapper();
+	
+			        wrapper.setEmployees(new ArrayList<EmployeeModel>(employeeService.getEmployees()));
+			        
+			        String id = (String) session.getAttribute("admin");
+	
+			        // adding a Search and Topic model objects to the ModelAndView
+			        mav.addObject("search", new SearchModel());
+			        mav.addObject("wrapper", wrapper);
+			        mav.addObject("id", id);
+	
+			        // returning ModelAndView object with all models needed attached
+			        return mav;
+				}
+				// if false, meaning the post was not inserted
+				else
+				{
+					// instantiating ModelAndView object and specifying to return the "secureError" view for logged in errors
+					ModelAndView mav = new ModelAndView("secureError");
+					
+					// adding a Search model objects to the ModelAndView
+					mav.addObject("search", new SearchModel());
+	
+					// returning ModelAndView object with all models needed attached
+					return mav;
+				}
+				
 			}
-			// if false, meaning the post was not inserted
-			else
+			// catching any exceptions so that the user will always see a nice error page
+			catch(Exception e)
 			{
-				// instantiating ModelAndView object and specifying to return the "secureError" view for logged in errors
+				System.out.println("Database Exception. Caught in Create Controller.");
+				
+				// instantiating ModelAndView object and specifying to return the "secureError" view
 				ModelAndView mav = new ModelAndView("secureError");
 				
 				// adding a Search model objects to the ModelAndView
 				mav.addObject("search", new SearchModel());
-
+				
 				// returning ModelAndView object with all models needed attached
 				return mav;
 			}
-			
 		}
-		// catching any exceptions so that the user will always see a nice error page
-		catch(Exception e)
+		else
 		{
-			System.out.println("Database Exception. Caught in Create Controller.");
+			// instantiating ModelAndView object and specifying to return the "registerUser" view
+			ModelAndView mav = new ModelAndView("registerUser");
 			
-			// instantiating ModelAndView object and specifying to return the "secureError" view
-			ModelAndView mav = new ModelAndView("secureError");
-			
-			// adding a Search model objects to the ModelAndView
+			// adding a Login, Register, and Search model objects to the ModelAndView to resolve the form modelAttributes in the header (search form and login form both need models)
+			mav.addObject("login", new CredentialModel());
+			mav.addObject("register", new RegisterModel());
 			mav.addObject("search", new SearchModel());
 			
 			// returning ModelAndView object with all models needed attached
@@ -258,35 +325,50 @@ public class EmployeeController
 	@RequestMapping(path="/remove*", method=RequestMethod.GET)
 	public ModelAndView removeEmployee(@RequestParam(value = "id", required = false) String id, HttpSession session)
 	{
-		// try catch for catching database exceptions
-		try
+		if(session != null && session.getAttribute("admin") != null)
 		{
-			// instantiating ModelAndView object and specifying to return the "createTopic" view
-			ModelAndView mav = new ModelAndView("removeEmployee");
-			System.out.println(id);
+			// try catch for catching database exceptions
+			try
+			{
+				// instantiating ModelAndView object and specifying to return the "createTopic" view
+				ModelAndView mav = new ModelAndView("removeEmployee");
+				System.out.println(id);
+				
+				// adding a Search and Topic model objects to the ModelAndView
+				mav.addObject("search", new SearchModel());
+				mav.addObject("employee", employeeService.getEmployee(id));
+				
+				// returning ModelAndView object with all models needed attached
+				return mav;
+			}
+			// catch exceptions
+			catch(Exception e)
+			{
+				System.out.println("Database Exception. Caught in Create Controller.");
+				
+				// instantiating ModelAndView object and specifying to return the "secureError" view
+				ModelAndView mav = new ModelAndView("secureError");
+				
+				// adding a Search model objects to the ModelAndView
+				mav.addObject("search", new SearchModel());
+				
+				// returning ModelAndView object with all models needed attached
+				return mav;
+			}
+		}
+		else
+		{
+			// instantiating ModelAndView object and specifying to return the "registerUser" view
+			ModelAndView mav = new ModelAndView("registerUser");
 			
-			// adding a Search and Topic model objects to the ModelAndView
+			// adding a Login, Register, and Search model objects to the ModelAndView to resolve the form modelAttributes in the header (search form and login form both need models)
+			mav.addObject("login", new CredentialModel());
+			mav.addObject("register", new RegisterModel());
 			mav.addObject("search", new SearchModel());
-			mav.addObject("employee", employeeService.getEmployee(id));
 			
 			// returning ModelAndView object with all models needed attached
 			return mav;
 		}
-		// catch exceptions
-		catch(Exception e)
-		{
-			System.out.println("Database Exception. Caught in Create Controller.");
-			
-			// instantiating ModelAndView object and specifying to return the "secureError" view
-			ModelAndView mav = new ModelAndView("secureError");
-			
-			// adding a Search model objects to the ModelAndView
-			mav.addObject("search", new SearchModel());
-			
-			// returning ModelAndView object with all models needed attached
-			return mav;
-		}
-		
 	}
 	
 	/**
@@ -302,51 +384,67 @@ public class EmployeeController
 	@RequestMapping(path="/deleteemployee", method=RequestMethod.POST)
 	public ModelAndView deleteEmployee(EmployeeModel employee, HttpSession session)
 	{
-		// try catch for catching database exceptions
-		try
+		if(session != null && session.getAttribute("admin") != null)
 		{
-			// if what is returned is true (meaning the post was successfully inserted)
-			if(employeeService.deleteEmployee(employee.getEmployeeid()))
+			// try catch for catching database exceptions
+			try
 			{
-				// instantiating ModelAndView object and specifying to return the "createTopic" view
-		        ModelAndView mav = new ModelAndView("viewEmployees");
-
-		        EmployeeListWrapper wrapper = new EmployeeListWrapper();
-
-		        wrapper.setEmployees(new ArrayList<EmployeeModel>(employeeService.getEmployees()));
-		        
-		        String id = (String) session.getAttribute("admin");
-
-		        // adding a Search and Topic model objects to the ModelAndView
-		        mav.addObject("search", new SearchModel());
-		        mav.addObject("wrapper", wrapper);
-		        mav.addObject("id", id);
-
-		        // returning ModelAndView object with all models needed attached
-		        return mav;
+				// if what is returned is true (meaning the post was successfully inserted)
+				if(employeeService.deleteEmployee(employee.getEmployeeid()))
+				{
+					// instantiating ModelAndView object and specifying to return the "createTopic" view
+			        ModelAndView mav = new ModelAndView("viewEmployees");
+	
+			        EmployeeListWrapper wrapper = new EmployeeListWrapper();
+	
+			        wrapper.setEmployees(new ArrayList<EmployeeModel>(employeeService.getEmployees()));
+			        
+			        String id = (String) session.getAttribute("admin");
+	
+			        // adding a Search and Topic model objects to the ModelAndView
+			        mav.addObject("search", new SearchModel());
+			        mav.addObject("wrapper", wrapper);
+			        mav.addObject("id", id);
+	
+			        // returning ModelAndView object with all models needed attached
+			        return mav;
+				}
+				// if false, meaning the post was not inserted
+				else
+				{
+					// instantiating ModelAndView object and specifying to return the "secureError" view for logged in errors
+					ModelAndView mav = new ModelAndView("secureError");
+					
+					// adding a Search model objects to the ModelAndView
+					mav.addObject("search", new SearchModel());
+	
+					// returning ModelAndView object with all models needed attached
+					return mav;
+				}
 			}
-			// if false, meaning the post was not inserted
-			else
+			// catch exceptions
+			catch(Exception e)
 			{
-				// instantiating ModelAndView object and specifying to return the "secureError" view for logged in errors
+				System.out.println("Database Exception. Caught in Create Controller.");
+				
+				// instantiating ModelAndView object and specifying to return the "secureError" view
 				ModelAndView mav = new ModelAndView("secureError");
 				
 				// adding a Search model objects to the ModelAndView
 				mav.addObject("search", new SearchModel());
-
+				
 				// returning ModelAndView object with all models needed attached
 				return mav;
 			}
 		}
-		// catch exceptions
-		catch(Exception e)
+		else
 		{
-			System.out.println("Database Exception. Caught in Create Controller.");
+			// instantiating ModelAndView object and specifying to return the "registerUser" view
+			ModelAndView mav = new ModelAndView("registerUser");
 			
-			// instantiating ModelAndView object and specifying to return the "secureError" view
-			ModelAndView mav = new ModelAndView("secureError");
-			
-			// adding a Search model objects to the ModelAndView
+			// adding a Login, Register, and Search model objects to the ModelAndView to resolve the form modelAttributes in the header (search form and login form both need models)
+			mav.addObject("login", new CredentialModel());
+			mav.addObject("register", new RegisterModel());
 			mav.addObject("search", new SearchModel());
 			
 			// returning ModelAndView object with all models needed attached

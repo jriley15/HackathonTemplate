@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.socialnorm.model.EmployeeModel;
+import com.hackathon.model.EmployeeModel;
 
 /**
  * Trevor Moore
@@ -245,21 +245,21 @@ public class EmployeeDAO implements IEmployeeDAO
 			// defining all our queries
 			// n1euzrfjibaye0bl
 			// second query for inserting the topic into the posts table
-			String query1 = "DELETE FROM activity2.authusers WHERE USERSID = ?";
+			//String query1 = "DELETE FROM activity2.authusers WHERE USERSID = ?";
 			String query2 = "DELETE FROM activity2.authemployee WHERE EMPLOYEEID = ?";
 			
 			// prepared statements for each query, using injected dbconnection to connect to db
-			PreparedStatement pt1 = dbconn.dbConnect().prepareStatement(query1);
+			//PreparedStatement pt1 = dbconn.dbConnect().prepareStatement(query1);
 			PreparedStatement pt2 = dbconn.dbConnect().prepareStatement(query2);
 			
 			System.out.println(employeeID);
 			// setting the parameters for the 1st prepared statement
-			pt1.setString(1, employeeID);
+			//pt1.setString(1, employeeID);
 			pt2.setString(1, employeeID);
 			
 			// executing the 2nd prepared statement and storing the number of affected rows
-            pt1.executeUpdate();
-            pt1.close();
+           // pt1.executeUpdate();
+           // pt1.close();
             
             int result = pt2.executeUpdate();
             pt2.close();

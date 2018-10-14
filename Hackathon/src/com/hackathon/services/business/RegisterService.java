@@ -1,8 +1,8 @@
 package com.hackathon.services.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.socialnorm.model.RegisterModel;
-import com.socialnorm.services.data.IRegistrationDAO;
+import com.hackathon.model.RegisterModel;
+import com.hackathon.services.data.IRegistrationDAO;
 
 /**
  * Trevor Moore

@@ -1,7 +1,7 @@
 package com.hackathon.services.data;
 
 import java.util.List;
-import com.socialnorm.model.EmployeeModel;
+import com.hackathon.model.EmployeeModel;
 
 /**
  * Trevor Moore

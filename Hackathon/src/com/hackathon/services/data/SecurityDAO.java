@@ -3,8 +3,8 @@ package com.hackathon.services.data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.socialnorm.model.CredentialModel;
-import com.socialnorm.model.EmployeeModel;
+import com.hackathon.model.CredentialModel;
+import com.hackathon.model.EmployeeModel;
 
 /**
  * Trevor Moore
@@ -47,9 +47,11 @@ public class SecurityDAO implements ISecurityDAO
 			// n1euzrfjibaye0bl
 			// defining query for checking if there is a row that matches the username and password passed in
 			String query = "SELECT * FROM activity2.authusers WHERE USERNAME = ? AND PASSWORD = ?";
+			String query2 = "SELECT * FROM activity2.authemployee WHERE ID = ?";
 			
 			// prepared statement for the query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
+			PreparedStatement pt2 = dbconn.dbConnect().prepareStatement(query2);
 			
 			// setting the parameters for the prepared statement
 			pt.setString(1, user.getUsername());
@@ -58,11 +60,22 @@ public class SecurityDAO implements ISecurityDAO
             // executing it and grabbing and returning the resultset (will be true for duplicate record, false for no duplicate)
             pt.execute();
             ResultSet rs = pt.getResultSet();
-            if(rs.next())
-            	return rs.getString("USERSID");
-            else
-            	return "false";
+            rs.next();
+            String uid = rs.getString("USERSID");
+            pt.close();
             
+            pt2.setString(1, uid);
+            pt2.execute();
+            ResultSet rs2 = pt2.getResultSet();
+            rs2.next();
+            String active = rs2.getString("IS_ACTIVE");
+            String term = rs2.getString("IS_TERMINATED");
+            pt2.close();
+    		System.out.println(active + " term: " + term);
+            if(active.equals("0") || term.equals("1"))
+            	return "false";
+            else
+            	return uid;
 		}
 		//catching exceptions and printing failure
 		catch(Exception e) 

@@ -1,6 +1,6 @@
 package com.hackathon.services.data;
 
-import com.socialnorm.model.RegisterModel;
+import com.hackathon.model.RegisterModel;
 
 /**
  * Trevor Moore
