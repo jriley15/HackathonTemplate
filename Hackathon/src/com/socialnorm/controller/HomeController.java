@@ -37,6 +37,7 @@ public class HomeController
 	{
 		// removing the "user" object stored in session, because this method gets called for logging out a user
 		session.removeAttribute("user");
+		session.removeAttribute("admin");
 		
 		// instantiating ModelAndView object and specifying to return the "home" view
 		ModelAndView mav = new ModelAndView("home");

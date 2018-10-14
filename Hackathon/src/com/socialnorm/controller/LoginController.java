@@ -74,8 +74,10 @@ public class LoginController
 		// if it does not have errors:
 		try
 		{
+			String usersID = loginService.loginCheck(user);
+			
 			// if the loginCheck returns true (meaning there user matches a record in the database)
-			if(loginService.loginCheck(user))
+			if(usersID != "false")
 			{
 				// instantiating ModelAndView object and specifying to return the "welcomeHome" view
 				ModelAndView mav = new ModelAndView("welcomeHome");
@@ -86,6 +88,10 @@ public class LoginController
 				
 				// storing the user CredentialModel of the logging in user in the session
 				session.setAttribute("user" , user);
+				
+				// check if user is admin store in session
+				if(loginService.checkAdmin(usersID))
+					session.setAttribute("admin", loginService.getAdmin(usersID));
 				
 				// returning ModelAndView object with all models needed attached
 				return mav;

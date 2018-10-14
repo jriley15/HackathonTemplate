@@ -49,7 +49,7 @@ public class EmployeeDAO implements IEmployeeDAO
 			// defining all our queries
 			// n1euzrfjibaye0bl
 			// second query for inserting the topic into the posts table
-			String query = "INSERT INTO activity2.authemployee(FIRSTNAME, LASTNAME, PHONE, EMAIL, EMPLOYEEID, ADMIN, ACTIVE, TERMINATED) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO activity2.authemployee (FIRSTNAME, LASTNAME, PHONE, EMAIL, EMPLOYEEID, ADMIN, ACTIVE, TERMINATED) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			// prepared statements for each query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
@@ -60,9 +60,9 @@ public class EmployeeDAO implements IEmployeeDAO
 			pt.setString(3, employee.getPhone());
 			pt.setString(4, employee.getEmail());
 			pt.setString(5, employee.getEmployeeid());
-			pt.setString(6, employee.getAdmin());
-			pt.setString(7, employee.getActive());
-			pt.setString(8, employee.getTerminated());
+			pt.setInt(6, Integer.valueOf(employee.getAdmin()));
+			pt.setInt(7, Integer.valueOf(employee.getActive()));
+			pt.setInt(8, Integer.valueOf(employee.getTerminated()));
 			
 			// executing the 2nd prepared statement and storing the number of affected rows
             int result = pt.executeUpdate();
@@ -99,7 +99,7 @@ public class EmployeeDAO implements IEmployeeDAO
 			// defining all our queries
 			// n1euzrfjibaye0bl
 			// first query for grabbing the ID of the user who is posting the topic from the users table
-			String query = "SELECT * FROM activity2.authusers";
+			String query = "SELECT * FROM activity2.authemployee";
 			
 			// prepared statements for each query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);

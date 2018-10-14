@@ -64,31 +64,31 @@ For bootstrapping the form, and also getting the current date/time
 	</div>
 	
 	<div class="form-group">
-    	<form:label class="col-md-2 control-label" path="admin" for="adminoptions">Admin (1=true, 0=false):</form:label>
+    	<form:label class="col-md-2 control-label" path="admin" for="adminoptions">Admin:</form:label>
     		<div class="col-md-10">
     			<form:select class="form-control text-body" path="admin" id="adminoptions">
-				    <option>0</option>
-				    <option>1</option>
+				    <option value="0">No</option>
+				    <option value="1">Yes</option>
 				</form:select>
 			</div>
 	</div>
 	
 	<div class="form-group">
-    	<form:label class="col-md-2 control-label" path="active" for="activeoptions">Active (1=true, 0=false):</form:label>
+    	<form:label class="col-md-2 control-label" path="active" for="activeoptions">Active:</form:label>
     		<div class="col-md-10">
     			<form:select class="form-control text-body" path="active" id="activeoptions">
-				    <option>1</option>
-				    <option>0</option>
+				    <option value="0">No</option>
+				    <option value="1">Yes</option>
 				</form:select>
 			</div>
 	</div>
 	
 	<div class="form-group">
-    	<form:label class="col-md-2 control-label" path="terminated" for="terminatedoptions">Terminated (1=true, 0=false):</form:label>
+    	<form:label class="col-md-2 control-label" path="terminated" for="terminatedoptions">Terminated:</form:label>
     		<div class="col-md-10">
     			<form:select class="form-control text-body" path="terminated" id="terminatedoptions">
-				    <option>0</option>
-				    <option>1</option>
+				    <option value="0">No</option>
+				    <option value="1">Yes</option>
 				</form:select>
 			</div>
 	</div>

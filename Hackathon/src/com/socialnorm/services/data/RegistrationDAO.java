@@ -48,7 +48,7 @@ public class RegistrationDAO implements IRegistrationDAO
 			// define all of our queries
 			// n1euzrfjibaye0bl
 			// check if user is an actual employee
-			String query1 = "SELECT * FROM activity2.authemployee WHERE FIRSTNAME = ?, LASTNAME = ?, EMPLOYEEID = ?";
+			String query1 = "SELECT * FROM activity2.authemployee WHERE FIRSTNAME = ? AND LASTNAME = ? AND EMPLOYEEID = ?";
 			// for checking if a username is already in the database
 			String query2 = "SELECT * FROM activity2.authusers WHERE USERNAME = ?";
 			// for inserting the new username and password into the users table
@@ -66,72 +66,55 @@ public class RegistrationDAO implements IRegistrationDAO
 			
 			pt2.setString(1, user.getUsername());
 			
-			pt3.setString(1, user.getUsername());
-			pt3.setString(2, user.getPassword());
-			
 			// executing the username check query
 			pt1.execute();
             ResultSet rs1 = pt1.getResultSet();
             
-            int result1;
+            int result;
             
-            
-            pt2.execute();
-            ResultSet rs2 = pt2.getResultSet();
-            // if the query return nothing
-            if(!rs2.next())
+            // if user is an actual employee
+            if(rs1.next())
             {
+            	String employeeID = rs1.getString("ID");
             	// close 1st prepared statement, execute the insert and then close it
-            	pt2.close();
-            	result1 = pt3.executeUpdate();
-                pt2.close();
-            }
-            // if the query returned something, theres a duplicate
-            else
-            	return "duplicate";
-            
-            // if the result of the 2nd prepared statement is greater than 0, the user was successfully inserted into users table
-            if(result1 > 0)
-            {
-            	// execute the 3rd prepared statement to get the new users' ID from the users table
-            	pt3.execute();
-            	// get the result set and grab the ID column as a string, then close statement
-            	ResultSet rs2 = pt3.getResultSet();
-            	rs2.next();
-            	String userID = rs2.getString("ID");
-            	System.out.println(userID);
-            	pt3.close();
+            	pt1.close();
             	
-            	// setting parameters for the 4th and final prepared statement with the newly grabbed user ID
-            	pt4.setString(1, userID);
-    			pt4.setString(2, user.getFirstName());
-    			pt4.setString(3, user.getLastName());
-    			pt4.setString(4, user.getPhone());
-    			pt4.setString(5, user.getEmail());
-    			
-    			// execute the final statement and close it
-    			int result2 = pt4.executeUpdate();
-    			pt4.close();
-    			
-    			// if the result is more than 0 it was inserted successfully into the userinfo table and registration is complete
-    			if(result2 > 0)
-    			{
+            	pt2.execute();
+                ResultSet rs2 = pt2.getResultSet();
+                
+                // if username is not already taken
+                if(!rs2.next())
+                {
+                	// close 1st prepared statement, execute the insert and then close it
+                	pt2.close();
+                	
+        			pt3.setString(1, employeeID);
+        			pt3.setString(2, user.getUsername());
+        			pt3.setString(3, user.getPassword());
+                	
+                	result = pt3.executeUpdate();
+                	pt3.close();
+                }
+                // if the query returned something, theres a duplicate
+                else
+                	return "duplicate";
+                
+                
+                if(result > 0)
+                {
     				System.out.println("Registration Successful.");
     				return "success";
     			}
-    			// else the last query failed to insert into userinfo table
-    			else
-    			{
-    				System.out.println("Query 3 failed.");
-    				return "failure";
-    			}
+                // else the 2nd query failed to insert into users table
+                else
+                {
+                	System.out.println("authusers insert failed.");
+                	return "failure";
+                }
+
             }
-            // else the 2nd query failed to insert into users table
             else
-            {
-            	System.out.println("Query 1 failed.");
             	return "failure";
-            }
 		}
 		//catching exceptions and printing failure
 		catch(Exception e) 

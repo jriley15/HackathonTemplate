@@ -1,6 +1,7 @@
 package com.socialnorm.services.business;
 
 import com.socialnorm.model.CredentialModel;
+import com.socialnorm.model.EmployeeModel;
 
 /**
  * Trevor Moore
@@ -21,5 +22,7 @@ public interface ILoginService
 	 * @param user of type CredentialModel
 	 * @return boolean object type
 	 */
-	public boolean loginCheck(CredentialModel user);
+	public String loginCheck(CredentialModel user);
+	public boolean checkAdmin(String userID);
+	public EmployeeModel getAdmin(String usersID);
 }

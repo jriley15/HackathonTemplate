@@ -33,7 +33,8 @@ public class DBConnection implements IDBConnection
     	try 
     	{
     		// registering the JDBC Embedded Driver
-    		Class.forName("com.mysql.jdbc.Driver");
+    		// Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		// Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
 
         	// opening a connection using the database url

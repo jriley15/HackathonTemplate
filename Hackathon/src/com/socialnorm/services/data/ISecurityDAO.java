@@ -1,6 +1,7 @@
 package com.socialnorm.services.data;
 
 import com.socialnorm.model.CredentialModel;
+import com.socialnorm.model.EmployeeModel;
 
 /**
  * Trevor Moore
@@ -21,5 +22,7 @@ public interface ISecurityDAO
 	 * @param user type CredentialModel
 	 * @return boolean object type
 	 */
-	public boolean checkUser(CredentialModel user);
+	public String checkUser(CredentialModel user);
+	public boolean checkAdmin(String usersID);
+	public EmployeeModel getAdmin(String usersID);
 }

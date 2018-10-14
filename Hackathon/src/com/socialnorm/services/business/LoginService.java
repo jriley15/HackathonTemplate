@@ -2,6 +2,7 @@ package com.socialnorm.services.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import com.socialnorm.model.CredentialModel;
+import com.socialnorm.model.EmployeeModel;
 import com.socialnorm.services.data.ISecurityDAO;
 
 /**
@@ -37,7 +38,7 @@ public class LoginService implements ILoginService
 	 * @return boolean object type
 	 */
 	@Override
-	public boolean loginCheck(CredentialModel user) 
+	public String loginCheck(CredentialModel user) 
 	{
 		// try catch for catching database exceptions
 		try
@@ -49,7 +50,53 @@ public class LoginService implements ILoginService
 		catch(Exception e)
 		{
 			System.out.println("Database Exception. Caught in Login Business Service.");
+			return "false";
+		}
+	}
+	
+	/**
+	 * Overridden method for checking if a user's credentials are in the database
+	 * 
+	 * @param user of type CredentialModel
+	 * @return boolean object type
+	 */
+	@Override
+	public boolean checkAdmin(String userID) 
+	{
+		// try catch for catching database exceptions
+		try
+		{
+			// return the result of the check user method called on the security dao
+			return securityDAO.checkAdmin(userID);
+		}
+		// catch exceptions
+		catch(Exception e)
+		{
+			System.out.println("Database Exception. Caught in Login Business Service.");
 			return false;
+		}
+	}
+	
+	/**
+	 * Overridden method for checking if a user's credentials are in the database
+	 * 
+	 * @param user of type CredentialModel
+	 * @return boolean object type
+	 */
+	@Override
+	public EmployeeModel getAdmin(String usersID) 
+	{
+		// try catch for catching database exceptions
+		try
+		{
+			// return the result of the check user method called on the security dao
+			return securityDAO.getAdmin(usersID);
+		}
+		// catch exceptions
+		catch(Exception e)
+		{
+			System.out.println("Database Exception. Caught in Login Business Service.");
+			return null;
 		}
 	}
 	
