@@ -48,6 +48,9 @@ This assignment was completed in collaboration with Trevor Moore and Aaron Ross
 	<definition name="viewEmployees" extends="LoggedInTemplate">
     	<put-attribute name="body" value="/WEB-INF/pages/viewEmployees.jsp" />
 	</definition>
+	<definition name="removeEmployee" extends="LoggedInTemplate">
+    	<put-attribute name="body" value="/WEB-INF/pages/removeEmployee.jsp" />
+	</definition>
 	<definition name="secureError" extends="LoggedInTemplate">
     	<put-attribute name="body" value="/WEB-INF/pages/secureError.jsp" />
 	</definition>

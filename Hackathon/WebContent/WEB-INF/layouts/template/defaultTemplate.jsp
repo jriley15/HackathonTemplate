@@ -20,6 +20,10 @@ For boostrapping the navbar
 
 <style>
 
+	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+	  background-color: #808080;
+	}
+
 	.errors {
 		color: #ff0000;
 	}
@@ -112,7 +116,7 @@ For boostrapping the navbar
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>SocialNorm</title>
+	<title>Hackathon</title>
 	<!-- This is where we define our open source resources, which we mapped in -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="<c:url value="/resources/Site.css" />" rel="stylesheet" type="text/css" />

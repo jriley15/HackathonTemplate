@@ -24,6 +24,8 @@ public interface IEmployeeService
 	 * @return boolean object type
 	 */
 	public boolean addEmployee(EmployeeModel employee);
+	public EmployeeModel getEmployee(String employeeID);
 	public List<EmployeeModel> getEmployees();
 	public boolean updateEmployees(List<EmployeeModel> employees);
+	public boolean deleteEmployee(String employeeID);
 }

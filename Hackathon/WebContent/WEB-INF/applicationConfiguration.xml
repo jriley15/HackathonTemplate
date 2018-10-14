@@ -21,7 +21,7 @@ For figuring out how to map to js and css files in the resources directory
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-   <context:component-scan base-package="com.socialnorm" />
+   <context:component-scan base-package="com.hackathon" />
    <context:annotation-config/>
    <mvc:annotation-driven />
    

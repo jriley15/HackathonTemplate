@@ -91,8 +91,11 @@ public class LoginController
 				
 				// check if user is admin store in session
 				if(loginService.checkAdmin(usersID))
-					session.setAttribute("admin", loginService.getAdmin(usersID));
-				
+				{
+					String empID = loginService.getAdmin(usersID).getEmployeeid();
+					System.out.println(empID);
+					session.setAttribute("admin", empID);
+				}
 				// returning ModelAndView object with all models needed attached
 				return mav;
 			}

@@ -19,16 +19,16 @@ import com.socialnorm.services.data.IEmployeeDAO;
 public class EmployeeService implements IEmployeeService
 {
 	// ITopicDAO for injecting our TopicDAO
-	IEmployeeDAO topicDAO;
+	IEmployeeDAO employeeDAO;
 
 	/**
 	 * Autowired method for setting the injected Topic DAO
 	 * @param dao type ITopicDAO
 	 */
 	@Autowired
-	public void setTopicDAO(IEmployeeDAO dao)
+	public void setEmployeeDAO(IEmployeeDAO dao)
 	{
-		this.topicDAO = dao;
+		this.employeeDAO = dao;
 	}
 	
 	/**
@@ -45,13 +45,38 @@ public class EmployeeService implements IEmployeeService
 		try
 		{
 			// returning the result of the create post method called on the topic dao
-			return topicDAO.addEmployee(employee);
+			return employeeDAO.addEmployee(employee);
 		}
 		// catch exceptions
 		catch(Exception e)
 		{
 			System.out.println("Database Exception. Caught in Topic Post Business Service.");
 			return false;
+		}
+	}
+	
+	
+	/**
+	 * Overridden method for inserting a user's topic into the database
+	 * 
+	 * @param topic of type TopicModel
+	 * @param user of type CredentialModel
+	 * @return boolean object type
+	 */
+	@Override
+	public EmployeeModel getEmployee(String employeeID)
+	{
+		// try catch for catching database exceptions
+		try
+		{
+			// returning the result of the create post method called on the topic dao
+			return employeeDAO.getEmployee(employeeID);
+		}
+		// catch exceptions
+		catch(Exception e)
+		{
+			System.out.println("Database Exception. Caught in Topic Post Business Service.");
+			return null;
 		}
 	}
 	
@@ -69,7 +94,7 @@ public class EmployeeService implements IEmployeeService
 		try
 		{
 			// returning the result of the create post method called on the topic dao
-			return topicDAO.getEmployees();
+			return employeeDAO.getEmployees();
 		}
 		// catch exceptions
 		catch(Exception e)
@@ -93,7 +118,31 @@ public class EmployeeService implements IEmployeeService
 		try
 		{
 			// returning the result of the create post method called on the topic dao
-			return topicDAO.updateEmployees(employees);
+			return employeeDAO.updateEmployees(employees);
+		}
+		// catch exceptions
+		catch(Exception e)
+		{
+			System.out.println("Database Exception. Caught in Topic Post Business Service.");
+			return false;
+		}
+	}
+	
+	/**
+	 * Overridden method for inserting a user's topic into the database
+	 * 
+	 * @param topic of type TopicModel
+	 * @param user of type CredentialModel
+	 * @return boolean object type
+	 */
+	@Override
+	public boolean deleteEmployee(String employeeID) 
+	{
+		// try catch for catching database exceptions
+		try
+		{
+			// returning the result of the create post method called on the topic dao
+			return employeeDAO.deleteEmployee(employeeID);
 		}
 		// catch exceptions
 		catch(Exception e)

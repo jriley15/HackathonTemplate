@@ -87,7 +87,7 @@ public class SecurityDAO implements ISecurityDAO
 		{
 			// n1euzrfjibaye0bl
 			// defining query for checking if there is a row that matches the username and password passed in
-			String query = "SELECT ADMIN FROM activity2.authemployee WHERE ID = ?";
+			String query = "SELECT IS_ADMIN FROM activity2.authemployee WHERE ID = ?";
 			
 			// prepared statement for the query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
@@ -99,7 +99,7 @@ public class SecurityDAO implements ISecurityDAO
             pt.execute();
             ResultSet rs = pt.getResultSet();
             rs.next();
-            if(rs.getInt("ADMIN") == 1)
+            if(rs.getInt("IS_ADMIN") == 1)
             	return true;
             else
             	return false;
@@ -140,7 +140,7 @@ public class SecurityDAO implements ISecurityDAO
             pt.execute();
             ResultSet rs = pt.getResultSet();
             rs.next();
-            EmployeeModel em = new EmployeeModel(rs.getString("FIRSTNAME"), rs.getString("LASTNAME"), rs.getString("PHONE"), rs.getString("EMAIL"), rs.getString("EMPLOYEEID"), rs.getString("ADMIN"), rs.getString("ACTIVE"), rs.getString("TERMINATED"));
+            EmployeeModel em = new EmployeeModel(rs.getString("FIRSTNAME"), rs.getString("LASTNAME"), rs.getString("PHONE"), rs.getString("EMAIL"), rs.getString("EMPLOYEEID"), rs.getString("IS_ADMIN"), rs.getString("IS_ACTIVE"), rs.getString("IS_TERMINATED"));
             return em;
             
 		}

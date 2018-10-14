@@ -3,70 +3,76 @@
 <%@ page import="java.util.*" %>
 
 <div class="form-horizontal">
-<form:form method="POST" action="updateemployee" modelAttribute="employees">
-<table class="table table-hover">
+<form:form method="POST" action="updateemployee" modelAttribute="wrapper">
+<table class="table">
 		<thead>
 			<tr>
-				<th>Employee Name</th>
+				<th>Name</th>
 				<th>Phone #</th>
 				<th>Email</th>
 				<th>Employee ID</th>
 				<th>Admin</th>
 				<th>Active</th>
 				<th>Terminated</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 
 
-<c:forEach items="${employees}" var="employee" varStatus="status">
+<c:forEach items="${wrapper.employees}" var="employee" varStatus="status">
 
 		<tbody>
-			<tr>
+		<c:choose>
+				<c:when test="${employee.employeeid == id}">
+				
+				</c:when>
+				<c:otherwise>
+				<tr>
 				<td>${employee.firstName} ${employee.lastName}</td>
 				<td>${employee.phone}</td>
 				<td>${employee.email}</td>
 				<td>${employee.employeeid}</td>
 				<td>
-				<!-- 
-				<div class="form-group">
-			    		<div class="col-sm-3">
-			    			<form:select class="form-control text-body" path="${employee.admin}" value="${employee.admin}" id="adminoptions">
-							    <option>0</option>
-							    <option>1</option>
-							</form:select>
-						</div>
-				</div>
-				</td>
-				<td>
-				<div class="form-group">
-		    		<div class="col-sm-3">
-		    			<form:select class="form-control text-body" path="${employee.active}" value="${employee.active}" id="activeoptions">
-						    <option>1</option>
-						    <option>0</option>
-						</form:select>
-					</div>
-				</div>
-				</td>
-				<td>
-				<div class="form-group">
-		    		<div class="col-md-3">
-		    			<form:select class="form-control text-body" path="${employee.terminated}" value="${employee.terminated}" id="terminatedoptions">
-						    <option>0</option>
-						    <option>1</option>
-						</form:select>
-					</div>
-				</div>
-				</td>
-				-->
-			</tr>
+
+					<form:select cssClass="form-control text-body" path="employees[${status.index}].admin" value="employees[${status.index}].admin" id="adminoptions">
+						<form:option value="0" label="No" />
+						<form:option value="1" label="Yes" />
+					</form:select>
+					</td>
+					<td>
+
+					<form:select cssClass="form-control text-body" path="employees[${status.index}].active" value="employees[${status.index}].active" id="activeoptions">
+						<form:option value="0" label="No" />
+						<form:option value="1" label="Yes" />
+					</form:select>
+					</td>
+					<td>
+					
+					<form:select cssClass="form-control text-body" path="employees[${status.index}].terminated" value="employees[${status.index}].terminated" id="terminatedoptions">
+						<form:option value="0" label="No" />
+						<form:option value="1" label="Yes" />
+					</form:select>
+					
+					</td>
+					<td>
+					<a href="<c:url value="/employee/remove?id=${employee.employeeid}" />" class="btn btn-default">Delete</a>
+					</td>
+					<form:hidden path="employees[${status.index}].employeeid" value="${employee.employeeid}" />
+
+				</tr>
+				</c:otherwise>
+		</c:choose> 
+			
 		</tbody>
 </c:forEach>
 </table>
 	<div class="form-group">
-		<div class="col-md-offset-2 col-md-10">
+		<div class="col-md-10">
 			<input type="submit" value="Update Employees" class="btn btn-default" />
 		</div>
 	</div>
 </form:form>
 </div>
+
+
 

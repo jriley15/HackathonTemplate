@@ -46,19 +46,21 @@ For boostrapping the navbar
 				<ul class="nav navbar-nav">
 
 					<!-- Link to the home page -->
-					<li><a href="<c:url value="/" />">Home</a></li>
+					<!-- <li><a href="<c:url value="/" />">Home</a></li>-->
 
 				</ul>
 				
 				
 
 				<!--Search form start -->
+				<!-- 
 				<form:form method="POST" action="${pageContext.request.contextPath}/search/usersearch" modelAttribute="search" class="navbar-form navbar-left" role="search">
 				    <div class="form-group">
 				        <form:input type="text" class="form-control" placeholder="Search" path="search"></form:input>
 				    </div>
 				    <input type="submit" value="Search" class="btn btn-default" />
 				</form:form>
+				-->
 				<!--Search form end -->
 
 				
@@ -89,14 +91,14 @@ For boostrapping the navbar
 											<hr />
 											<div class="form-group">
 												<div class="col-md-12">
-													<form:input path="username" class="form-control mr-sm-2" placeholder="Username" aria-label="Username"/>
+													<form:input path="username" class="form-control mr-sm-2" value="trevomoo@gmail.com" placeholder="Username" aria-label="Username"/>
 													<form:errors path="username" cssClass="errors"/>
 												</div>
 											</div>
 
 											<div class="form-group">
 												<div class="col-md-12">
-													<form:input path="password" type="password" class="form-control mr-sm-2" placeholder="Password" aria-label="Password"/>
+													<form:input path="password" type="password" class="form-control mr-sm-2" value="$Shanklin86" placeholder="Password" aria-label="Password"/>
 													<form:errors path="password" cssClass="errors"/>
 												</div>
 											</div>
