@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
-<!-- 
-Trevor Moore
-CST-341
-9/22/2018
-This assignment was completed in collaboration with Trevor Moore and Aaron Ross
--->
 
 <tiles-definitions>
 	<!-- NOTE! WE MUST ADD ALL BODY VIEWS TO THE PAGE (EVERY SINGLE JSP FILE) -->

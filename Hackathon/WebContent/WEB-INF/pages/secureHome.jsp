@@ -1,16 +1,3 @@
-<!-- 
-Trevor Moore
-CST-341
-9/22/2018
-This assignment was completed in collaboration with Trevor Moore and Aaron Ross
-
-We used source code from the following websites to complete this assignment:
-https://bootstrapbay.com/blog/bootstrap-3-carousel-tutorial/ 
-http://javawebtutor.com/articles/spring/configuring-static-resources-in-spring-mvc.php
-
-For making the carousel
--->
-  
 <style>
 
 	#carouselButtons {
@@ -20,14 +7,14 @@ For making the carousel
 	}
 
 </style>
-
+<!-- >
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+-->
 
-
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="6000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -38,7 +25,7 @@ For making the carousel
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="${pageContext.request.contextPath}/resources/images/image1.jpg">
+      <img src="${pageContext.request.contextPath}/resources/images/image3.1.jpg" style="height: 80%; width:100%">
       <div class="carousel-caption">
       	<h1>Welcome to our Hackathon App!</h1>
           <p>The root for all your business needs.</p>
@@ -46,7 +33,7 @@ For making the carousel
       </div>
     </div>
     <div class="item">
-      <img src="${pageContext.request.contextPath}/resources/images/image2.jpg">
+      <img src="${pageContext.request.contextPath}/resources/images/image1.1.jpg" style="height: 80%;width:100%">
       <div class="carousel-caption">
       	<h1>Explore!</h1>
           <p>Feel free to browse our app and enjoy all our content.</p>
@@ -54,7 +41,7 @@ For making the carousel
       </div>
     </div>
     <div class="item">
-      <img src="${pageContext.request.contextPath}/resources/images/image3.jpg">
+      <img src="${pageContext.request.contextPath}/resources/images/image2.1.jpg" style="height: 80%;width:100%">
       <div class="carousel-caption">
       	<h1>Sign Up and Get Started!</h1>
           <p>Register and login to to get started!</p>

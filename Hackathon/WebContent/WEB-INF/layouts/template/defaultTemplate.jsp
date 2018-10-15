@@ -2,21 +2,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 
-<!-- 
-Trevor Moore
-CST-341
-9/22/2018
-This assignment was completed in collaboration with Trevor Moore and Aaron Ross
-
-We used source code from the following websites to complete this assignment:
-https://www.w3schools.com/bootstrap/bootstrap_navbar.asp
-https://bootsnipp.com/snippets/featured/fancy-navbar-login-sign-in-form
-https://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp
-https://bootsnipp.com/snippets/featured/fancy-navbar-login-sign-in-form
-https://bootsnipp.com/snippets/OORq
-
-For boostrapping the navbar
--->
 
 <style>
 
@@ -43,9 +28,9 @@ For boostrapping the navbar
 
 	.form-horizontal {
 		min-height: 70%;
-		width: 70%;
+		width: 100%;
 		padding: 19px;
-		position: absolute;
+		position: relative;
 		
 		background: rgba(0, 0, 0, 0.6);
 		margin-bottom: 80px;
@@ -117,17 +102,27 @@ For boostrapping the navbar
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Hackathon</title>
+	
+
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
+<!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+	
 	<!-- This is where we define our open source resources, which we mapped in -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="<c:url value="/resources/Site.css" />" rel="stylesheet" type="text/css" />
-	<link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet" type="text/css" id="bootstrap-css"/>
+
 	<!-- <link href="<c:url value="/WEB-INF/scripts/bootstrap.min.css" />" rel="stylesheet"> -->
+	
 	<script src="<c:url value="/resources/jquery-1.11.1.min.js" />"></script>
 	<script src="<c:url value="/resources/bootstrap.min.js" />"></script>
 	<script src="<c:url value="/resources/mdb.js" />"></script>
 	<script src="<c:url value="/resources/jquery.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/jquery-1.10.2.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/jquery.unobtrusive-ajax.js" />"></script>
+	
+	
+	<!-- This was in the individual jsps -->
+	<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>

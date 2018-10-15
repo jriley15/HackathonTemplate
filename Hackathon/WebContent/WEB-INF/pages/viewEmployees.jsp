@@ -2,8 +2,23 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page import="java.util.*" %>
 
+
 <div class="form-horizontal">
-<form:form method="POST" action="updateemployee" modelAttribute="wrapper">
+<div class="container">
+	<div class="row">
+        <div class="col-md-6">
+                <div class="input-group col-md-12">
+                <form:form method="POST" action="${pageContext.request.contextPath}/search/secureemployeesearch" modelAttribute="esearch">
+                    <form:input type="text" class="form-control" placeholder="Search Employees (Name/Employee ID)" path="search"/>
+                    <span class="input-group-btn">
+                        <input type="submit" value="Search" class="btn btn-default" />
+                    </span>
+                </form:form>
+                </div>
+        </div>
+	</div>
+</div>
+<form:form method="POST" action="${pageContext.request.contextPath}/employee/updateemployee" modelAttribute="wrapper">
 <table class="table">
 		<thead>
 			<tr>

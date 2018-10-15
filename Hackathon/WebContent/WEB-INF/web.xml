@@ -5,12 +5,6 @@
    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
 	<display-name>Spring MVC Application</display-name>
-<!-- 
-Trevor Moore
-CST-341
-9/22/2018
-This assignment was completed in collaboration with Trevor Moore and Aaron Ross
--->
 	
 	<!-- Spring Dispatch Servlet and Mapping-->
 	<servlet>

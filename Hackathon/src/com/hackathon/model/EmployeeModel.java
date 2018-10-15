@@ -5,22 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-/**
- * Trevor Moore
- * CST-341
- * 10/8/2018
- * This assignment was completed in collaboration with Aaron Ross
- * This is our own work.
- * 
- * We used source code from the following:
- * https://docs.oracle.com/javaee/6/tutorial/doc/gircz.html
- * 
- * For bean validation
- * 
- * TopicModel Class for holding the parameters for our "Product"
- * @author Trevor
- * 
- */
 public class EmployeeModel
 {
 	@NotNull(message="First Name cannot be left blank.")
@@ -55,10 +39,7 @@ public class EmployeeModel
 	@NotNull(message="Terminated flag cannot be left blank.")
 	@Digits(integer=1, fraction=0, message="Must be 1 (for Terminated) or 0 (for Hired/not Terminated).")
 	protected String terminated;
-	
-	/**
-	 * Default constructor
-	 */
+
 	public EmployeeModel()
 	{
 		this.firstName = "";
@@ -70,14 +51,7 @@ public class EmployeeModel
 		this.active = "";
 		this.terminated = "";
 	}
-	
-	/**
-	 * Non-default constructor
-	 * @param date type String
-	 * @param title type String
-	 * @param category type String
-	 * @param body type String
-	 */
+
 	public EmployeeModel(String firstName, String lastName, String email, String phone, String employeeid, String admin, String active, String terminated) 
 	{
 		super();
@@ -91,7 +65,6 @@ public class EmployeeModel
 		this.terminated = terminated;
 	}
 
-	// GETTERS AND SETTERS
 	public String getFirstName() 
 	{
 		return firstName;

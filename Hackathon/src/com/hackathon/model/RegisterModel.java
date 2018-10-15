@@ -5,23 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-/**
- * Trevor Moore
- * CST-341
- * 09/22/2018
- * This assignment was completed in collaboration with Aaron Ross
- * This is our own work.
- * 
- * We used source code from the following:
- * https://docs.oracle.com/javaee/6/tutorial/doc/gircz.html
- * http://regexlib.com/Search.aspx?k=email&AspxAutoDetectCookieSupport=1
- * 
- * For bean validation/regex
- * 
- * RegisterModel Class for holding the parameters for the register form on the register page. Also IS-A CredentialModel
- * @author Trevor
- * 
- */
 public class RegisterModel extends CredentialModel
 {
 	@NotNull(message="First Name cannot be left blank.")
@@ -45,9 +28,6 @@ public class RegisterModel extends CredentialModel
 	@Digits(integer=6, fraction=0, message="Must be 6 numbers.")
 	protected String employeeid;
 
-	/**
-	 * Default constructor
-	 */
 	public RegisterModel()
 	{
 		this.firstName = "";
@@ -59,15 +39,6 @@ public class RegisterModel extends CredentialModel
 		this.password = "";
 	}
 
-	/**
-	 * Non-default constructor
-	 * @param firstName type String
-	 * @param lastName type String
-	 * @param email type String
-	 * @param phone type String
-	 * @param username type String
-	 * @param password type String
-	 */
 	public RegisterModel(String firstName, String lastName, String email, String phone, String username, String password) 
 	{
 		super();
@@ -79,7 +50,6 @@ public class RegisterModel extends CredentialModel
 		this.password = password;
 	}
 
-	// GETTERS AND SETTERS
 	public String getFirstName() 
 	{
 		return firstName;

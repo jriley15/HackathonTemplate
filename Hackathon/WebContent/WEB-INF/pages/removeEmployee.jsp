@@ -1,21 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page import="java.util.*" %>
 
-<!-- 
-Trevor Moore
-CST-341
-10/10/2018
-This assignment was completed in collaboration with Trevor Moore and Aaron Ross
-
-We used source code from the following websites to complete this assignment:
-https://www.w3schools.com/bootstrap/bootstrap_forms.asp
-https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp
-https://www.guru99.com/jsp-date-handling.html
-
-For bootstrapping the form, and also getting the current date/time
--->
-
-
 <form:form method="POST" action="deleteemployee" modelAttribute="employee">
 
 

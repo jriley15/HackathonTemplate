@@ -1,16 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<!-- 
-Trevor Moore
-CST-341
-9/22/2018
-This assignment was completed in collaboration with Trevor Moore and Aaron Ross
-
-We used source code from the following websites to complete this assignment:
-https://www.w3schools.com/bootstrap/bootstrap_forms.asp
-
-For bootstrapping the form
--->
 
 <form:form method="POST" action="loginuser" modelAttribute="login">
 

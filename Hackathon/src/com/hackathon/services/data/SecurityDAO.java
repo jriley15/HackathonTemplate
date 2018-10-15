@@ -6,62 +6,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hackathon.model.CredentialModel;
 import com.hackathon.model.EmployeeModel;
 
-/**
- * Trevor Moore
- * CST-341
- * 10/10/2018
- * This assignment was completed in collaboration with Aaron Ross
- * This is our own work.
- * 
- * SecurityDAO concrete implementation class of ISecurityDAO
- * @author Trevor
- *
- */
+
 public class SecurityDAO implements ISecurityDAO
 {
-	// IDBConnection for injecting our database connection class
 	IDBConnection dbconn;
 
-	/**
-	 * Autowired method for setting the injected DBConnection
-	 * @param dbconn type IDBConnection
-	 */
 	@Autowired
 	public void setDBConnection(IDBConnection dbconn)
 	{
 		this.dbconn = dbconn;
 	}
-	
-	/**
-	 * Overridden method for checking if a user is in the users table
-	 * 
-	 * @param user type CredentialModel
-	 * @return boolean object type
-	 */
+
 	@Override
 	public String checkUser(CredentialModel user) 
 	{
-		// try catch for catching exceptions
 		try 
 		{
 			// n1euzrfjibaye0bl
-			// defining query for checking if there is a row that matches the username and password passed in
+			// opp hack: nod3eke2u33fhtk2
 			String query = "SELECT * FROM nod3eke2u33fhtk2.authusers WHERE USERNAME = ? AND PASSWORD = ?";
 			String query2 = "SELECT * FROM nod3eke2u33fhtk2.authemployee WHERE ID = ?";
 			
-			// prepared statement for the query, using injected dbconnection to connect to db
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
 			PreparedStatement pt2 = dbconn.dbConnect().prepareStatement(query2);
-			
-			// setting the parameters for the prepared statement
+
 			pt.setString(1, user.getUsername());
 			pt.setString(2, user.getPassword());
 
-            // executing it and grabbing and returning the resultset (will be true for duplicate record, false for no duplicate)
             pt.execute();
             ResultSet rs = pt.getResultSet();
-            rs.next();
-            String uid = rs.getString("USERSID");
+            String uid;
+            
+            if(!rs.next())
+            {
+            	pt.close();
+            	return "false";
+            }
+            else
+            	uid = rs.getString("USERSID");
+            
             pt.close();
             
             pt2.setString(1, uid);
@@ -77,7 +60,6 @@ public class SecurityDAO implements ISecurityDAO
             else
             	return uid;
 		}
-		//catching exceptions and printing failure
 		catch(Exception e) 
 		{
 			e.printStackTrace();
@@ -86,29 +68,19 @@ public class SecurityDAO implements ISecurityDAO
 		}
 	}
 	
-	/**
-	 * Overridden method for checking if a user is in the users table
-	 * 
-	 * @param user type CredentialModel
-	 * @return boolean object type
-	 */
 	@Override
 	public boolean checkAdmin(String usersID) 
 	{
-		// try catch for catching exceptions
 		try 
 		{
 			// n1euzrfjibaye0bl
-			// defining query for checking if there is a row that matches the username and password passed in
+			// opp hack: nod3eke2u33fhtk2
 			String query = "SELECT IS_ADMIN FROM nod3eke2u33fhtk2.authemployee WHERE ID = ?";
-			
-			// prepared statement for the query, using injected dbconnection to connect to db
+
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
-			
-			// setting the parameters for the prepared statement
+
 			pt.setString(1, usersID);
 
-            // executing it and grabbing and returning the resultset (will be true for duplicate record, false for no duplicate)
             pt.execute();
             ResultSet rs = pt.getResultSet();
             rs.next();
@@ -118,7 +90,6 @@ public class SecurityDAO implements ISecurityDAO
             	return false;
             
 		}
-		//catching exceptions and printing failure
 		catch(Exception e) 
 		{
 			e.printStackTrace();
@@ -127,29 +98,19 @@ public class SecurityDAO implements ISecurityDAO
 		}
 	}
 	
-	/**
-	 * Overridden method for checking if a user is in the users table
-	 * 
-	 * @param user type CredentialModel
-	 * @return boolean object type
-	 */
 	@Override
 	public EmployeeModel getAdmin(String usersID) 
 	{
-		// try catch for catching exceptions
 		try 
 		{
 			// n1euzrfjibaye0bl
-			// defining query for checking if there is a row that matches the username and password passed in
+			// opp hack: nod3eke2u33fhtk2
 			String query = "SELECT * FROM nod3eke2u33fhtk2.authemployee WHERE ID = ?";
-			
-			// prepared statement for the query, using injected dbconnection to connect to db
+
 			PreparedStatement pt = dbconn.dbConnect().prepareStatement(query);
-			
-			// setting the parameters for the prepared statement
+
 			pt.setString(1, usersID);
 
-            // executing it and grabbing and returning the resultset (will be true for duplicate record, false for no duplicate)
             pt.execute();
             ResultSet rs = pt.getResultSet();
             rs.next();
@@ -157,7 +118,6 @@ public class SecurityDAO implements ISecurityDAO
             return em;
             
 		}
-		//catching exceptions and printing failure
 		catch(Exception e) 
 		{
 			e.printStackTrace();
